@@ -10,7 +10,7 @@
 // build by the user have been successfully uploaded into firmware.
 #define STRING_VERSION_CONFIG_H __DATE__ " " __TIME__ // build date and time
 #ifndef STRING_CONFIG_H_AUTHOR
-#define STRING_CONFIG_H_AUTHOR "Version DEV" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "Version E3Dv61-RHB" // Who made the changes.
 #endif
 
 // SERIAL_PORT selects which serial port should be used for communication with the host.
@@ -163,7 +163,8 @@
 // When temperature exceeds max temp, your heater will be switched off.
 // This feature exists to protect your hotend from overheating accidentally, but *NOT* from thermistor short/failure!
 // You should use MINTEMP for thermistor short/failure protection.
-#define HEATER_0_MAXTEMP 275    // 275 C limit in Ultimaker 2 since the PTFE coupler degrades rapidly at higher temperatures.
+#define HEATER_0_MAXTEMP 400    // 400 C limit in Ultimaker 2+ with E3D v6 hotend.  Other features might limit it to less. RHB
+//#define HEATER_0_MAXTEMP 275    // 275 C limit in Ultimaker 2 since the PTFE coupler degrades rapidly at higher temperatures.
 #define HEATER_1_MAXTEMP 275
 #define HEATER_2_MAXTEMP 275
 #define BED_MAXTEMP 130
@@ -203,10 +204,15 @@
     //#define  DEFAULT_Ki 2.5
     //#define  DEFAULT_Kd 100.0
 
-// Ultimaker2 JarJar
-    #define  DEFAULT_Kp 10.03
-    #define  DEFAULT_Ki 1.50
-    #define  DEFAULT_Kd 70.0
+// Ultimaker2 JarJar (This was original code in this source file - RHB)
+    //#define  DEFAULT_Kp 10.03
+    //#define  DEFAULT_Ki 1.50
+    //#define  DEFAULT_Kd 70.0
+    
+// E3D v6 (RHB - per E3D wicki)
+    #define  DEFAULT_Kp 36.59
+    #define  DEFAULT_Ki 3.65
+    #define  DEFAULT_Kd 91.72
 
 // MakerGear
 //    #define  DEFAULT_Kp 7.0
@@ -217,6 +223,7 @@
 //    #define  DEFAULT_Kp 63.0
 //    #define  DEFAULT_Ki 2.25
 //    #define  DEFAULT_Kd 440
+
 #endif // PIDTEMP
 
 // Bed Temperature Control
@@ -339,13 +346,21 @@ const bool Z_ENDSTOPS_INVERTING = true; // set to true to invert the logic of th
 
 #define min_software_endstops true // If true, axis won't move to coordinates less than HOME_POS.
 #define max_software_endstops true  // If true, axis won't move to coordinates greater than the defined lengths below.
-// Travel limits after homing
-#define X_MAX_POS 230
+// Travel limits after homing - for E3D v6 RHB
+#define X_MAX_POS 215
 #define X_MIN_POS 0
-#define Y_MAX_POS 224.5
+#define Y_MAX_POS 210
 #define Y_MIN_POS 0
 #define Z_MAX_POS 225
 #define Z_MIN_POS 0
+
+// Travel limits after homing original UM2+
+//#define X_MAX_POS 230
+//#define X_MIN_POS 0
+//#define Y_MAX_POS 224.5
+//#define Y_MIN_POS 0
+//#define Z_MAX_POS 225
+//#define Z_MIN_POS 0
 
 #define X_MAX_LENGTH (X_MAX_POS - X_MIN_POS)
 #define Y_MAX_LENGTH (Y_MAX_POS - Y_MIN_POS)
