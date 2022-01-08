@@ -51,7 +51,9 @@ extern struct materialSettings material[EXTRUDERS];
 #define FILAMENT_INSERT_FAST_SPEED    80    //Speed during the forward length
 #define FILAMENT_INSERT_EXTRUDE_SPEED 1     //Final speed when extruding
 
-#define EEPROM_RETRACTION_LENGTH_SCALE 256
+//#define EEPROM_RETRACTION_LENGTH_SCALE 256
+#define EEPROM_RETRACTION_LENGTH_SCALE 255  // RHB-Change in response to https://github.com/Ultimaker/UM2.1-Firmware/issues/13
+
 #define EEPROM_RETRACTION_SPEED_SCALE 4
 
 #define EEPROM_MATERIAL_SETTINGS_OFFSET 0x800
